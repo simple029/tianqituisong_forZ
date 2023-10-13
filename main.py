@@ -157,6 +157,6 @@ if __name__ == '__main__':
 
     if note_ch == "" :
         # 获取词霸每日金句
-        note_ch  = get_ciba()
+       note_ch, note_en  = get_ciba()
     # 公众号推送消息
     send_message(user, accessToken, city, weather, max_temperature, min_temperature,note_ch)
