@@ -4,7 +4,7 @@ app_id = "wx52454d7473063c7d"
 # 公众号appSecret
 app_secret = "abbcd1a05084805de8cd4926d7679d93"
 # 模板消息id
-template_id = "0XJhGyZY30hEjmni44nPXDNVlpDVcWdaPZaZFIkEB0E"
+template_id = "sUe1VzoKR1hh5Z9Lg8oxrqN-OUr6P3jYN6bgWvtj49k"
 
 # 这是openid
 user = ["o2hVq6wqsVKMs-_chtTIXdIgmrIc"]
