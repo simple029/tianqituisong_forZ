@@ -58,7 +58,7 @@ def get_weather(province, city):
     return weather, temp, tempn
 
 
-def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature,note_en):
+def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature,note_ch):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
     week_list = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"]
     year = localtime().tm_year
@@ -149,10 +149,10 @@ if __name__ == '__main__':
     province, city = config.province, config.city
    
     weather, max_temperature, min_temperature = get_weather(province, city)
-    note_ch = config["note_ch"]
-    note_en = config["note_en"]
-    if note_ch == "" and note_en == "":
+    note_ch = config.note_ch
+
+    if note_ch == "" :
         # 获取词霸每日金句
-        note_ch, note_en = get_ciba()
+        note_ch  = get_ciba()
     # 公众号推送消息
-    send_message(user, accessToken, city, weather, max_temperature, min_temperature,note_en)
+    send_message(user, accessToken, city, weather, max_temperature, min_temperature,note_ch)
