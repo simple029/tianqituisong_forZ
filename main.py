@@ -113,26 +113,6 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
                 "birthday": {
                     "value": birth_day,
                     "color": "#FF8000"
-                },
-                "firstClass": {
-                    "value": theClass[0],
-                    "color": "#FF8000"
-                },
-                "secondClass": {
-                    "value": theClass[1],
-                    "color": "#FF8000"
-                },
-                "thirdClass": {
-                    "value": theClass[2],
-                    "color": "#FF8000"
-                },
-                "fourthClass": {
-                    "value": theClass[3],
-                    "color": "#FF8000"
-                },
-                "fifthClass": {
-                    "value": theClass[4],
-                    "color": "#FF8000"
                 }
             }
         }
@@ -154,7 +134,7 @@ if __name__ == '__main__':
     print('user:',user)
     # 传入省份和市获取天气信息
     province, city = config.province, config.city
-    classes = config.classes
+   
     weather, max_temperature, min_temperature = get_weather(province, city)
     # 公众号推送消息
     send_message(user, accessToken, city, weather, max_temperature, min_temperature)
