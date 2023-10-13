@@ -4,6 +4,19 @@ import config
 from requests import get, post
 from datetime import datetime, date
 
+def get_ciba():
+    url = "http://open.iciba.com/dsapi/"
+    headers = {
+        'Content-Type': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+    }
+    r = get(url, headers=headers)
+    note_en = r.json()["content"]
+    note_ch = r.json()["note"]
+    return note_ch, note_en
+ 
+
 
 def get_access_token():
     # appId
@@ -45,7 +58,7 @@ def get_weather(province, city):
     return weather, temp, tempn
 
 
-def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature):
+def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature,note_en):
     url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
     week_list = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"]
     year = localtime().tm_year
@@ -136,5 +149,10 @@ if __name__ == '__main__':
     province, city = config.province, config.city
    
     weather, max_temperature, min_temperature = get_weather(province, city)
+    note_ch = config["note_ch"]
+    note_en = config["note_en"]
+    if note_ch == "" and note_en == "":
+        # 获取词霸每日金句
+        note_ch, note_en = get_ciba()
     # 公众号推送消息
-    send_message(user, accessToken, city, weather, max_temperature, min_temperature)
+    send_message(user, accessToken, city, weather, max_temperature, min_temperature,note_en)
