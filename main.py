@@ -126,6 +126,10 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
                 "birthday": {
                     "value": birth_day,
                     "color": "#FF8000"
+                },
+                "note_ch": {
+                    "value": note_ch,
+                    "color": "#FF8000"
                 }
             }
         }
